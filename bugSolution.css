@@ -1,0 +1,25 @@
+The solution involves ensuring all units are explicitly defined within the `calc()` function and verifying the order of operations. If possible, simplify calculations to reduce the potential for errors. 
+
+Here's how to fix the example `width: calc(100% - 10);` issue: 
+
+```css
+width: calc(100% - 10px);
+```
+
+For complex nested `calc()` expressions, consider using CSS variables (`--varName`) to break them down into smaller, more manageable parts, improving readability and maintainability. This also prevents unexpected results due to order of operation issues. 
+
+Example of refactoring with CSS variables:
+```css
+:root {
+  --main-width: calc(100vw - 20px);
+  --sidebar-width: calc(var(--main-width) / 4);
+}
+
+.container {
+  width: var(--main-width);
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+}
+```
